@@ -1,6 +1,6 @@
 package usecase
 
-import "slack-gitlab-notification-bot/notify/domain/repo"
+import "notify/domain/repo"
 
 // Notifier is notify from gitlab to slack
 type Notifier struct {
@@ -23,6 +23,6 @@ func (n *Notifier) Notify(gitlabID string) error {
 	if err != nil {
 		return err
 	}
-	n.slackClient.Notify(user.GetSlackID, "")
+	n.slackClient.Notify(user.GetSlackID(), "")
 	return nil
 }

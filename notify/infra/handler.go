@@ -1,8 +1,9 @@
 package infra
 
 import (
+	"encoding/json"
 	"errors"
-	"slack-gitlab-notification-bot/notify/usecase"
+	"notify/usecase"
 
 	"github.com/aws/aws-lambda-go/events"
 )
@@ -16,8 +17,8 @@ var (
 )
 
 func Handler(request events.APIGatewayProxyRequest, notifyer usecase.Notifier) (events.APIGatewayProxyResponse, error) {
-	json := map[string]string{} // TODO: define request struct
-	if err := json.Unmarshal([]byte(request.Body), json); err != nil {
+	j := map[string]string{} // TODO: define request struct
+	if err := json.Unmarshal([]byte(request.Body), j); err != nil {
 		return events.APIGatewayProxyResponse{}, err
 	}
 
